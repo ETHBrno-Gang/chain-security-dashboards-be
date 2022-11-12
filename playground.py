@@ -1,6 +1,8 @@
-from src.persistence.repositories import DummyRepository, Dummy
+import datetime
+
+from src.persistence.repositories import *
 
 #print(Dummy.query.all())
 print(DummyRepository.read_first())
-DummyRepository.create(Dummy(username='gfdg'))
-print(DummyRepository.read_first())
+
+

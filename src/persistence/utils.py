@@ -20,19 +20,19 @@ def rollback_on_error(func: Callable) -> Callable:
         except sqlalchemy.exc.IntegrityError as e:
             logger.exception(e)
             logger.warning(f'Rolling back the db session because of the error')
-            persistence.session.rollback()
+            persistence.db.session.rollback()
             return None
         except sqlalchemy.exc.ProgrammingError as e:
             logger.exception(e)
             logger.warning(f'Rolling back the db session because of the error')
-            persistence.session.rollback()
+            persistence.db.session.rollback()
         except sqlalchemy.exc.DatabaseError as e:
             logger.exception(e)
-            persistence.session.rollback()
+            persistence.db.session.rollback()
             logger.warning('session rollbacked')
         except sqlalchemy.exc.InvalidRequestError as e:
             logger.exception(e)
-            persistence.session.rollback()
+            persistence.db.session.rollback()
             logger.warning('session rollbacked')
             return None
     return wrapper

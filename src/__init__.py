@@ -27,6 +27,10 @@ db.create_all()
 db.engine.dispose()  # needs to after db.create_all()
 
 
+from . import api
+API_V1_PREFIX = '/api/v1'
+app.register_blueprint(api.v1.naka.blueprint, url_prefix=API_V1_PREFIX)
+
 logger.info('App has loaded and is running')
 
 #idea
